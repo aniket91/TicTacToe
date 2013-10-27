@@ -1,16 +1,43 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background"
+    android:layout_gravity="center"
+    android:orientation="vertical"
+    android:padding="30dip"
     tools:context=".TicTacToe" >
 
     <TextView
-        android:layout_width="wrap_content"
+        android:text="@string/game_title"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="@string/hello_world" />
+        android:layout_marginBottom="20dip"
+        android:gravity="center"
+        android:textSize="24.5sp" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/continue_button"
+        android:text="@string/continue_label"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/new_game_button"
+        android:text="@string/new_game_label" 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/about_button"
+        android:text="@string/about_label" 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/exit_button"
+        android:text="@string/exit_label" 
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>
