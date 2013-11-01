@@ -10,6 +10,9 @@
     <string name="about_label">About</string>
     <string name="exit_label">Exit</string>
     
+    <string name="about_title">About Android Tic-Tac-Toe</string>
+    <string name="about_text">This Application is developed by Aniket Thakur</string>
+    
     
     
 
