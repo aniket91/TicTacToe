@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.widget.Button;
 
 public class GamePlay extends Activity implements OnClickListener {
+	
+	int counter;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,23 +51,41 @@ public class GamePlay extends Activity implements OnClickListener {
 
 		switch(v.getId()){
 
-		case R.id.user_option_button_1_1 : 
+		case R.id.user_option_button_1_1 :
+			Button b_1_1 = (Button) v;
+			setXAndO(b_1_1);
 			break;
-		case R.id.user_option_button_1_2 : 
+		case R.id.user_option_button_1_2 :
+			Button b_1_2 = (Button) v;
+			setXAndO(b_1_2);
 			break;
-		case R.id.user_option_button_1_3 : 
+		case R.id.user_option_button_1_3 :
+			Button b_1_3 = (Button) v;
+			setXAndO(b_1_3);
 			break;
-		case R.id.user_option_button_2_1 : 
+		case R.id.user_option_button_2_1 :
+			Button b_2_1 = (Button) v;
+			setXAndO(b_2_1);
 			break;
-		case R.id.user_option_button_2_2 : 
+		case R.id.user_option_button_2_2 :
+			Button b_2_2 = (Button) v;
+			setXAndO(b_2_2);
 			break;
-		case R.id.user_option_button_2_3 : 
+		case R.id.user_option_button_2_3 :
+			Button b_2_3 = (Button) v;
+			setXAndO(b_2_3);
 			break;
-		case R.id.user_option_button_3_1 : 
+		case R.id.user_option_button_3_1 :
+			Button b_3_1 = (Button) v;
+			setXAndO(b_3_1);
 			break;
 		case R.id.user_option_button_3_2 : 
+			Button b_3_2 = (Button) v;
+			setXAndO(b_3_2);
 			break;
-		case R.id.user_option_button_3_3 : 
+		case R.id.user_option_button_3_3 :
+			Button b_3_3 = (Button) v;
+			setXAndO(b_3_3);
 			break;
 		case R.id.game_play_back_button:
 			Intent mainScreenActivity = new Intent(this,TicTacToe.class);
@@ -82,8 +103,15 @@ public class GamePlay extends Activity implements OnClickListener {
 
 
 		}
-
-
+	}
+	
+	private void setXAndO(Button b) {
+		if(counter % 2 == 0)
+			b.setText("X");
+		else
+			b.setText("O");
+		
+		counter++;
 	}
 
 
