@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/background"
+    android:padding="10dip" >
+
+    <TextView
+        android:id="@+id/game_play_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="25dip"
+        android:gravity="center"
+        android:text="@string/game_title"
+        android:textSize="24.5sp" />
+
+    <TableLayout
+        android:id="@+id/gameTableLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/game_play_title"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="14dp"
+        android:padding="1dip" >
+
+        <TableRow
+            android:id="@+id/tableRow1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <Button
+                android:id="@+id/user_option_button_1_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="@string/option_empty" />
+
+            <Button
+                android:id="@+id/user_option_button_1_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="10"
+                android:text="@string/option_empty" />
+
+            <Button
+                android:id="@+id/user_option_button_1_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="10"
+                android:text="@string/option_empty" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <Button
+                android:id="@+id/user_option_button_2_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_empty" />
+
+            <Button
+                android:id="@+id/user_option_button_2_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_empty" />
+
+            <Button
+                android:id="@+id/user_option_button_2_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_empty" />
+        </TableRow>
+
+        <TableRow
+            android:id="@+id/tableRow3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dip" >
+
+            <Button
+                android:id="@+id/user_option_button_3_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_empty" />
+
+            <Button
+                android:id="@+id/user_option_button_3_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_empty" />
+
+            <Button
+                android:id="@+id/user_option_button_3_3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/option_empty" />
+        </TableRow>
+    </TableLayout>
+
+    <Button
+        android:id="@+id/game_play_back_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/gameTableLayout"
+        android:layout_below="@+id/gameTableLayout"
+        android:layout_marginTop="74dp"
+        android:text="@string/game_play_back_label" />
+
+    <Button
+        android:id="@+id/game_play_quit_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/game_play_restart_button"
+        android:layout_alignBottom="@+id/game_play_restart_button"
+        android:layout_alignRight="@+id/gameTableLayout"
+        android:text="@string/game_play_quit_label" />
+
+    <Button
+        android:id="@+id/game_play_restart_button"
+        style="?android:attr/buttonStyleSmall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/game_play_back_button"
+        android:layout_alignBottom="@+id/game_play_back_button"
+        android:layout_centerHorizontal="true"
+        android:text="@string/game_play_restart_label" />
+
+</RelativeLayout>

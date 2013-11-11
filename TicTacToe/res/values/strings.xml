@@ -13,6 +13,14 @@
     <string name="about_title">About Android Tic-Tac-Toe</string>
     <string name="about_text">This Application is developed by Aniket Thakur</string>
     
+    <string name="option_empty"> </string>
+    <string name="option_x">X</string>
+    <string name="option_o">O</string>
+    
+    <string name="game_play_restart_label">Restart</string>
+    <string name="game_play_quit_label">Quit</string>
+    <string name="game_play_back_label">Back</string>
+    
     
     
 

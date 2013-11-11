@@ -28,6 +28,9 @@
             android:theme="@android:style/Theme.Dialog">
         </activity>
         
+        <activity android:name=".GamePlay">
+        </activity>
+        
     </application>
 
 </manifest>

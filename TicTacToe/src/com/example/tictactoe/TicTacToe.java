@@ -39,7 +39,9 @@ public class TicTacToe extends Activity implements OnClickListener {
 			System.out.println("Continue button Pressed");
 			break;
 		case R.id.new_game_button:
-			System.out.println("New Game button Pressed");
+			Intent newGameActivity = new Intent(this,GamePlay.class);
+			finish();
+			startActivity(newGameActivity);
 			break;
 		case R.id.about_button:
 			Intent aboutActivity = new Intent(this,About.class);
