@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -15,6 +16,7 @@ public class GamePlay extends Activity implements OnClickListener {
 	int counter;
 	int position;
 	final Context gameContext = this;
+	private MediaPlayer mp;
 
 
 	@Override
@@ -54,6 +56,12 @@ public class GamePlay extends Activity implements OnClickListener {
 
 	@Override
 	public void onClick(View v) {
+		
+		if(mp != null)
+			mp.release();
+		
+		mp = MediaPlayer.create(this, R.raw.keypress_standard);
+		mp.start();
 
 		switch(v.getId()){
 
@@ -218,12 +226,14 @@ public class GamePlay extends Activity implements OnClickListener {
 	}
 
 	private void setXAndO(Button b) {
-		if(counter % 2 == 0)
-			b.setText("X");
-		else
-			b.setText("O");
+		if(b.getText().toString().length() == 0) {
+			if(counter % 2 == 0)
+				b.setText("X");
+			else
+				b.setText("O");
 
-		counter++;
+			counter++;
+		}
 	}
 
 	private boolean isGameOver(int position) {
