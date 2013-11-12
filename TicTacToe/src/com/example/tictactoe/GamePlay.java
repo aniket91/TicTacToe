@@ -13,10 +13,11 @@ import android.widget.Button;
 
 public class GamePlay extends Activity implements OnClickListener {
 
-	int counter;
-	int position;
-	final Context gameContext = this;
+	private int counter;
+	private int position;
+	private final Context gameContext = this;
 	private MediaPlayer mp;
+	private boolean gameOver;
 
 
 	@Override
@@ -128,7 +129,9 @@ public class GamePlay extends Activity implements OnClickListener {
 		}
 
 
-		if(counter >= 5 && isGameOver(position)){
+		if(counter >= 5 && isGameOver(position) && !gameOver){
+			
+			gameOver = true;
 			
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(gameContext);
 			
@@ -189,7 +192,9 @@ public class GamePlay extends Activity implements OnClickListener {
 			alertDialog.show();
 
 		}
-		else if(counter == 9) {
+		else if(counter == 9 && !gameOver) {
+			
+			gameOver = true;
 			
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(gameContext);
 			// set title
