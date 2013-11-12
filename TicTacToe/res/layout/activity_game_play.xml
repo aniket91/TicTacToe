@@ -133,4 +133,39 @@
         android:layout_centerHorizontal="true"
         android:text="@string/game_play_restart_label" />
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/game_play_title"
+        android:layout_below="@+id/gameTableLayout"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="14dp"
+        android:text="@string/Player1_label" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/textView1"
+        android:layout_below="@+id/textView1"
+        android:text="@string/Player2_label" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_toRightOf="@+id/game_play_back_button"
+        android:text="@string/option_x" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView2"
+        android:layout_alignBottom="@+id/textView2"
+        android:layout_alignRight="@+id/textView3"
+        android:text="@string/option_o" />
+
 </RelativeLayout>

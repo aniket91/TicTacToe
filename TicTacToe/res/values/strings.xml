@@ -21,6 +21,9 @@
     <string name="game_play_quit_label">Quit</string>
     <string name="game_play_back_label">Back</string>
     
+    <string name="Player1_label">Player1 : </string>
+    <string name="Player2_label">Player2 : </string>
+    
     
     
 
