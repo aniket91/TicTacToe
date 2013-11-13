@@ -215,9 +215,10 @@ public class GamePlay extends Activity implements OnClickListener {
 			startActivity(mainScreenActivity);
 			break;
 		case R.id.game_play_restart_button:
-			Intent restartActivity = new Intent(this,GamePlay.class);
+			/*Intent restartActivity = new Intent(this,GamePlay.class);
 			finish();
-			startActivity(restartActivity);
+			startActivity(restartActivity);*/
+			resetGame();
 			break;
 		case R.id.game_play_quit_button:
 			finish();
@@ -256,9 +257,10 @@ public class GamePlay extends Activity implements OnClickListener {
 					public void onClick(DialogInterface dialog,int id) {
 						// if this button is clicked, close
 						// current activity
-						Intent restartActivity = new Intent(gameContext,GamePlay.class);
+						/*Intent restartActivity = new Intent(gameContext,GamePlay.class);
 						finish();
-						startActivity(restartActivity);
+						startActivity(restartActivity);*/
+						resetGame();
 					}
 				})
 				.setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -279,9 +281,10 @@ public class GamePlay extends Activity implements OnClickListener {
 					public void onClick(DialogInterface dialog,int id) {
 						// if this button is clicked, close
 						// current activity
-						Intent restartActivity = new Intent(gameContext,GamePlay.class);
+						/*Intent restartActivity = new Intent(gameContext,GamePlay.class);
 						finish();
-						startActivity(restartActivity);
+						startActivity(restartActivity);*/
+						resetGame();
 					}
 				})
 				.setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -316,9 +319,10 @@ public class GamePlay extends Activity implements OnClickListener {
 				public void onClick(DialogInterface dialog,int id) {
 					// if this button is clicked, close
 					// current activity
-					Intent restartActivity = new Intent(gameContext,GamePlay.class);
+					/*Intent restartActivity = new Intent(gameContext,GamePlay.class);
 					finish();
-					startActivity(restartActivity);
+					startActivity(restartActivity);*/
+					resetGame();
 				}
 			})
 			.setNegativeButton("No",new DialogInterface.OnClickListener() {
@@ -486,6 +490,21 @@ public class GamePlay extends Activity implements OnClickListener {
 		}
 
 		return false;
+	}
+	
+	private void resetGame() {
+		
+		counter = 0;
+		gameOver = false;
+		((Button)findViewById(R.id.user_option_button_1_1)).setText("");
+		((Button)findViewById(R.id.user_option_button_1_2)).setText("");
+		((Button)findViewById(R.id.user_option_button_1_3)).setText("");
+		((Button)findViewById(R.id.user_option_button_2_1)).setText("");
+		((Button)findViewById(R.id.user_option_button_2_2)).setText("");
+		((Button)findViewById(R.id.user_option_button_2_3)).setText("");
+		((Button)findViewById(R.id.user_option_button_3_1)).setText("");
+		((Button)findViewById(R.id.user_option_button_3_2)).setText("");
+		((Button)findViewById(R.id.user_option_button_3_3)).setText("");
 	}
 
 
