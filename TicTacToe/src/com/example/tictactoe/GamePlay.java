@@ -7,9 +7,13 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.TextView;
 
 public class GamePlay extends Activity implements OnClickListener {
 
@@ -18,6 +22,7 @@ public class GamePlay extends Activity implements OnClickListener {
 	private final Context gameContext = this;
 	private MediaPlayer mp;
 	private boolean gameOver;
+	private boolean disableSound = false;
 
 
 	@Override
@@ -50,19 +55,112 @@ public class GamePlay extends Activity implements OnClickListener {
 		View user33Button = findViewById(R.id.user_option_button_3_3);
 		user33Button.setOnClickListener(this);
 
+		View player1Label= findViewById(R.id.textView_player1);
+		player1Label.setOnClickListener(this);
+		View player2Label= findViewById(R.id.textView_player2);
+		player2Label.setOnClickListener(this);
 
+	}
+	
+	@Override
+	public void onSaveInstanceState(Bundle savedInstanceState) {
+	  super.onSaveInstanceState(savedInstanceState);
+	  // Save UI state changes to the savedInstanceState.
+	  // This bundle will be passed to onCreate if the process is
+	  // killed and restarted.
+	  savedInstanceState.putBoolean("disableSound", disableSound);
+	}
+	
+	@Override
+	public void onRestoreInstanceState(Bundle savedInstanceState) {
+	  super.onRestoreInstanceState(savedInstanceState);
+	  // Restore UI state from the savedInstanceState.
+	  // This bundle has also been passed to onCreate.
+	  disableSound = savedInstanceState.getBoolean("disableSound");
+	  Menu menu = (Menu)findViewById(R.menu.tic_tac_toe);
+	  MenuItem toggleSoundItemMenu = menu.findItem(R.id.toogle_sound_menu);
+	  if(disableSound)
+		  toggleSoundItemMenu.setTitle(R.string.toggle_sound_off_label);
+	  else
+		  toggleSoundItemMenu.setTitle(R.string.toggle_sound_on_label);
+	  
+	}
+	
+	
+	
+	
+	
+	
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		// Inflate the menu; this adds items to the action bar if it is present.
+		getMenuInflater().inflate(R.menu.tic_tac_toe, menu);
+		return true;
+	}
+
+	public boolean onOptionsItemSelected(MenuItem item) {
+		//respond to menu item selection
+		switch (item.getItemId()) {
+		case R.id.action_settings_menu:
+			return true;
+		case R.id.toogle_sound_menu:
+			if(disableSound){
+				disableSound = false;
+				AlertDialog alert = new AlertDialog.Builder(this).create();
+				alert.setTitle("Sound Toggle Notification");
+				alert.setMessage("Sound is now Enabled");
+				alert.setButton(AlertDialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+
+					}
+				});
+				alert.show();
+				item.setTitle(R.string.toggle_sound_on_label);
+			}
+			else{
+				disableSound = true;
+				AlertDialog alert = new AlertDialog.Builder(this).create();
+				alert.setTitle("Sound Toggle Notification");
+				alert.setMessage("Sound is now Disabled");
+				alert.setButton(AlertDialog.BUTTON_POSITIVE,"OK", new DialogInterface.OnClickListener() {
+
+					@Override
+					public void onClick(DialogInterface dialog, int which) {
+						dialog.cancel();
+
+					}
+				});
+				alert.show();
+				item.setTitle(R.string.toggle_sound_off_label);
+			}
+			return true;
+		case R.id.about_menu:
+			Intent aboutActivity = new Intent(this,About.class);
+			startActivity(aboutActivity);
+			return true;
+		case R.id.help_menu:
+			return true;
+		default:
+			return super.onOptionsItemSelected(item);
+		}
 	}
 
 
 
 	@Override
 	public void onClick(View v) {
-		
+
 		if(mp != null)
 			mp.release();
-		
-		mp = MediaPlayer.create(this, R.raw.keypress_standard);
-		mp.start();
+
+		if(!disableSound) {
+			mp = MediaPlayer.create(this, R.raw.keypress_standard);
+			mp.start();
+		}
 
 		switch(v.getId()){
 
@@ -124,67 +222,78 @@ public class GamePlay extends Activity implements OnClickListener {
 		case R.id.game_play_quit_button:
 			finish();
 			break;
+		case R.id.textView_player1:
+			TextView textViewPlayer1 = (TextView) v;
+			setPlayerName(textViewPlayer1);
+			break;
+		case R.id.textView_player2:
+			TextView textViewPlayer2 = (TextView) v;
+			setPlayerName(textViewPlayer2);
+			break;
 
 
 		}
 
 
 		if(counter >= 5 && isGameOver(position) && !gameOver){
-			
+
 			gameOver = true;
-			
+
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(gameContext);
-			
+
 			// set title
 			alertDialogBuilder.setTitle("Game Over");
+
+			String player1Name = ((TextView)findViewById(R.id.textView_player1)).getText().toString();
+			String player2Name = ((TextView)findViewById(R.id.textView_player2)).getText().toString();
 
 			if(counter % 2 == 0) {
 				// set dialog message
 				alertDialogBuilder
-					.setMessage("Player2 Won the Game! \n Restart Game?")
-					.setCancelable(false)
-					.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog,int id) {
-							// if this button is clicked, close
-							// current activity
-							Intent restartActivity = new Intent(gameContext,GamePlay.class);
-							finish();
-							startActivity(restartActivity);
-						}
-					  })
-					.setNegativeButton("No",new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog,int id) {
-							// if this button is clicked, just close
-							// the dialog box and do nothing
-							dialog.cancel();
-						}
-					});
+				.setMessage(player2Name + " Won the Game! \n Restart Game?")
+				.setCancelable(false)
+				.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						// if this button is clicked, close
+						// current activity
+						Intent restartActivity = new Intent(gameContext,GamePlay.class);
+						finish();
+						startActivity(restartActivity);
+					}
+				})
+				.setNegativeButton("No",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						// if this button is clicked, just close
+						// the dialog box and do nothing
+						dialog.cancel();
+					}
+				});
 				//Player 2 won the game
 			}
 			else {
 				// set dialog message
 				alertDialogBuilder
-					.setMessage("Player1 Won the Game! \n Restart Game?")
-					.setCancelable(false)
-					.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog,int id) {
-							// if this button is clicked, close
-							// current activity
-							Intent restartActivity = new Intent(gameContext,GamePlay.class);
-							finish();
-							startActivity(restartActivity);
-						}
-					  })
-					.setNegativeButton("No",new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog,int id) {
-							// if this button is clicked, just close
-							// the dialog box and do nothing
-							dialog.cancel();
-						}
-					});
+				.setMessage(player1Name + " Won the Game! \n Restart Game?")
+				.setCancelable(false)
+				.setPositiveButton("Yes",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						// if this button is clicked, close
+						// current activity
+						Intent restartActivity = new Intent(gameContext,GamePlay.class);
+						finish();
+						startActivity(restartActivity);
+					}
+				})
+				.setNegativeButton("No",new DialogInterface.OnClickListener() {
+					public void onClick(DialogInterface dialog,int id) {
+						// if this button is clicked, just close
+						// the dialog box and do nothing
+						dialog.cancel();
+					}
+				});
 				//Player 1 won the game
 			}
-			
+
 			// create alert dialog
 			AlertDialog alertDialog = alertDialogBuilder.create();
 
@@ -193,13 +302,13 @@ public class GamePlay extends Activity implements OnClickListener {
 
 		}
 		else if(counter == 9 && !gameOver) {
-			
+
 			gameOver = true;
-			
+
 			AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(gameContext);
 			// set title
 			alertDialogBuilder.setTitle("Game Over");
-			
+
 			alertDialogBuilder
 			.setMessage("Game Resulted in a Draw! \n Restart Game?")
 			.setCancelable(false)
@@ -211,7 +320,7 @@ public class GamePlay extends Activity implements OnClickListener {
 					finish();
 					startActivity(restartActivity);
 				}
-			  })
+			})
 			.setNegativeButton("No",new DialogInterface.OnClickListener() {
 				public void onClick(DialogInterface dialog,int id) {
 					// if this button is clicked, just close
@@ -219,9 +328,9 @@ public class GamePlay extends Activity implements OnClickListener {
 					dialog.cancel();
 				}
 			});
-			
+
 			//No one won the game
-			
+
 			// create alert dialog
 			AlertDialog alertDialog = alertDialogBuilder.create();
 
@@ -239,6 +348,34 @@ public class GamePlay extends Activity implements OnClickListener {
 
 			counter++;
 		}
+	}
+
+	private void setPlayerName(final TextView textView) {
+		AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+		alert.setTitle("Title");
+		alert.setMessage("Enter Player Name");
+
+		// Set an EditText view to get user input 
+		final EditText inputText = new EditText(this);
+		alert.setView(inputText);
+
+		alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				String value = inputText.getText().toString();
+				if(value != null && value.length()>0) {
+					textView.setText(value);
+				}
+			}
+		});
+
+		alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+			public void onClick(DialogInterface dialog, int whichButton) {
+				dialog.cancel();
+			}
+		});
+
+		alert.show();
 	}
 
 	private boolean isGameOver(int position) {
@@ -352,5 +489,22 @@ public class GamePlay extends Activity implements OnClickListener {
 	}
 
 
+
+}
+
+class inputclickListener implements android.content.DialogInterface.OnClickListener {
+
+	TextView textView;
+
+	public inputclickListener(TextView textView){
+		this.textView = textView;
+	}
+
+
+	@Override
+	public void onClick(DialogInterface dialog, int which) {
+		// TODO Auto-generated method stub
+
+	}
 
 }

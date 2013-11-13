@@ -2,13 +2,19 @@
 <resources>
 
     <string name="app_name">TicTacToe</string>
-    <string name="action_settings">Settings</string>
+    
+    <string name="action_settings_label">Settings</string>
     
     <string name="game_title">Tic-Tac-Toe</string>
     <string name="continue_label">Continue</string>
     <string name="new_game_label">New Game</string>
     <string name="about_label">About</string>
     <string name="exit_label">Exit</string>
+    
+    <string name="toggle_sound_on_label">Toggle Sound(ON)</string>
+    <string name="toggle_sound_off_label">Toggle Sound(OFF)</string>
+    
+    <string name="help_label">Help</string>
     
     <string name="about_title">About Android Tic-Tac-Toe</string>
     <string name="about_text">This Application is developed by Aniket Thakur</string>
