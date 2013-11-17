@@ -19,6 +19,13 @@
     <string name="about_title">About Android Tic-Tac-Toe</string>
     <string name="about_text">This Application is developed by Aniket Thakur</string>
     
+    <string name="howtoplay_title">How To Play?</string>
+    <string name="howtoplay_Content">\n1. Choose who goes first.\n2. Enter your name in place of Player1 and Player2 by taping on them(Optional).\n3.First Player has X symbol and the second Player has O symbol.\n4.These symbols will be placed on the table, in the attempt to have three of them in a row.\n 5.The players take turns putting their symbol on the table.\n6.The first player to have 3 of their symbols in a row, whether it is horizontally, vertically, or diagonally, is the winner.\n </string>
+    
+    <string name="settings_help_title">Setting Help</string>
+    <string name="settings_help_content">\n1. Sound can be toggled On or Off from the settings. Current status of Sound(On or OFF) is shows on the toggle sound label.\n</string>
+    
+    
     <string name="option_empty"> </string>
     <string name="option_x">X</string>
     <string name="option_o">O</string>

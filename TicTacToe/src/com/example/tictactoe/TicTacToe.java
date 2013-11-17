@@ -25,6 +25,8 @@ public class TicTacToe extends Activity implements OnClickListener {
 		continueButton.setOnClickListener(this);
 		View newgameButton = findViewById(R.id.new_game_button);
 		newgameButton.setOnClickListener(this);
+		View helpButton = findViewById(R.id.help_button);
+		helpButton.setOnClickListener(this);
 		View aboutButton = findViewById(R.id.about_button);
 		aboutButton.setOnClickListener(this);
 		View exitButton = findViewById(R.id.exit_button);
@@ -82,6 +84,8 @@ public class TicTacToe extends Activity implements OnClickListener {
 			startActivity(aboutActivity);
 			return true;
 		case R.id.help_menu:
+			Intent helpActivity = new Intent(this,Help.class);
+			startActivity(helpActivity);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
@@ -109,6 +113,10 @@ public class TicTacToe extends Activity implements OnClickListener {
 			Intent newGameActivity = new Intent(this,GamePlay.class);
 			finish();
 			startActivity(newGameActivity);
+			break;
+		case R.id.help_button:
+			Intent helpActivity = new Intent(this,Help.class);
+			startActivity(helpActivity);
 			break;
 		case R.id.about_button:
 			Intent aboutActivity = new Intent(this,About.class);
