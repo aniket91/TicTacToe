@@ -30,6 +30,11 @@ public class GamePlay extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_play);
 
+		Bundle bundle = getIntent().getExtras();
+		if(bundle != null) {
+			disableSound = bundle.getBoolean("disableSound");
+		}
+
 		View backButton  = findViewById(R.id.game_play_back_button);
 		backButton.setOnClickListener(this);
 		View restartButton = findViewById(R.id.game_play_restart_button);
@@ -61,41 +66,46 @@ public class GamePlay extends Activity implements OnClickListener {
 		player2Label.setOnClickListener(this);
 
 	}
-	
+
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
-	  super.onSaveInstanceState(savedInstanceState);
-	  // Save UI state changes to the savedInstanceState.
-	  // This bundle will be passed to onCreate if the process is
-	  // killed and restarted.
-	  savedInstanceState.putBoolean("disableSound", disableSound);
+		super.onSaveInstanceState(savedInstanceState);
+		// Save UI state changes to the savedInstanceState.
+		// This bundle will be passed to onCreate if the process is
+		// killed and restarted.
+		savedInstanceState.putBoolean("disableSound", disableSound);
 	}
-	
+
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
-	  super.onRestoreInstanceState(savedInstanceState);
-	  // Restore UI state from the savedInstanceState.
-	  // This bundle has also been passed to onCreate.
-	  disableSound = savedInstanceState.getBoolean("disableSound");
-	  Menu menu = (Menu)findViewById(R.menu.tic_tac_toe);
-	  MenuItem toggleSoundItemMenu = menu.findItem(R.id.toogle_sound_menu);
-	  if(disableSound)
-		  toggleSoundItemMenu.setTitle(R.string.toggle_sound_off_label);
-	  else
-		  toggleSoundItemMenu.setTitle(R.string.toggle_sound_on_label);
-	  
+		super.onRestoreInstanceState(savedInstanceState);
+		// Restore UI state from the savedInstanceState.
+		// This bundle has also been passed to onCreate.
+		disableSound = savedInstanceState.getBoolean("disableSound");
+		Menu menu = (Menu)findViewById(R.menu.tic_tac_toe);
+		MenuItem toggleSoundItemMenu = menu.findItem(R.id.toogle_sound_menu);
+		if(disableSound)
+			toggleSoundItemMenu.setTitle(R.string.toggle_sound_off_label);
+		else
+			toggleSoundItemMenu.setTitle(R.string.toggle_sound_on_label);
+
 	}
-	
-	
-	
-	
-	
-	
+
+
+
+
+
+
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.tic_tac_toe, menu);
+		MenuItem toggleSoundItemMenu = menu.findItem(R.id.toogle_sound_menu);
+		if(disableSound)
+			toggleSoundItemMenu.setTitle(R.string.toggle_sound_off_label);
+		else
+			toggleSoundItemMenu.setTitle(R.string.toggle_sound_on_label);
 		return true;
 	}
 
@@ -211,6 +221,7 @@ public class GamePlay extends Activity implements OnClickListener {
 			break;
 		case R.id.game_play_back_button:
 			Intent mainScreenActivity = new Intent(this,TicTacToe.class);
+			mainScreenActivity.putExtra("disableSound", disableSound);
 			finish();
 			startActivity(mainScreenActivity);
 			break;
@@ -491,9 +502,9 @@ public class GamePlay extends Activity implements OnClickListener {
 
 		return false;
 	}
-	
+
 	private void resetGame() {
-		
+
 		counter = 0;
 		gameOver = false;
 		((Button)findViewById(R.id.user_option_button_1_1)).setText("");

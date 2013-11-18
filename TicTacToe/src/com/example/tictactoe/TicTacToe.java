@@ -21,6 +21,13 @@ public class TicTacToe extends Activity implements OnClickListener {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tic_tac_toe);
 
+		Bundle bundle = getIntent().getExtras();
+		if(bundle != null) {
+			disableSound = bundle.getBoolean("disableSound");
+		}
+		
+
+
 		View continueButton  = findViewById(R.id.continue_button);
 		continueButton.setOnClickListener(this);
 		View newgameButton = findViewById(R.id.new_game_button);
@@ -35,6 +42,11 @@ public class TicTacToe extends Activity implements OnClickListener {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.tic_tac_toe, menu);
+		MenuItem toggleSoundItemMenu = menu.findItem(R.id.toogle_sound_menu);
+		if(disableSound)
+			toggleSoundItemMenu.setTitle(R.string.toggle_sound_off_label);
+		else
+			toggleSoundItemMenu.setTitle(R.string.toggle_sound_on_label);
 		return true;
 	}
 
@@ -107,6 +119,7 @@ public class TicTacToe extends Activity implements OnClickListener {
 			break;
 		case R.id.new_game_button:
 			Intent newGameActivity = new Intent(this,GamePlay.class);
+			newGameActivity.putExtra("disableSound", disableSound);
 			finish();
 			startActivity(newGameActivity);
 			break;
