@@ -153,6 +153,8 @@ public class GamePlay extends Activity implements OnClickListener {
 			startActivity(aboutActivity);
 			return true;
 		case R.id.help_menu:
+			Intent helpActivity = new Intent(this,Help.class);
+			startActivity(helpActivity);
 			return true;
 		default:
 			return super.onOptionsItemSelected(item);
