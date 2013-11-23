@@ -1,5 +1,6 @@
 package com.example.tictactoe;
 
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.app.Activity;
@@ -20,6 +21,7 @@ public class TicTacToe extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_tic_tac_toe);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 		Bundle bundle = getIntent().getExtras();
 		if(bundle != null) {

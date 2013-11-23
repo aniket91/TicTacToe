@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.Menu;
@@ -29,6 +30,7 @@ public class GamePlay extends Activity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_game_play);
+		setVolumeControlStream(AudioManager.STREAM_MUSIC);
 
 		Bundle bundle = getIntent().getExtras();
 		if(bundle != null) {
